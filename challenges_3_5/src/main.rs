@@ -5,7 +5,7 @@ fn main() {
 
     query_user_for_temperature_unit(&mut temperature_unit);
     let value_to_convert: i32 = query_user_for_value_to_convert();
-    let converted_value = convert_user_input(temperature_unit, value_to_convert).to_string();
+    let converted_value: f32 = convert_user_input(temperature_unit, value_to_convert).to_string();
     println!("converted Value is {}", converted_value);
 }
 
