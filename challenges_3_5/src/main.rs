@@ -5,7 +5,7 @@ fn main() {
 
     query_user_for_temperature_unit(&mut temperature_unit);
     let value_to_convert: i32 = query_user_for_value_to_convert();
-    let converted_value: f32 = convert_user_input(temperature_unit, value_to_convert).to_string();
+    let converted_value = convert_user_input(temperature_unit, value_to_convert).to_string();
     println!("converted Value is {}", converted_value);
 }
 
@@ -54,7 +54,7 @@ fn query_user_for_value_to_convert() -> i32 {
 }
 
 fn is_valid_temperature_unit(user_input: &std::string::String) -> bool {
-    return user_input.len() < 2 && user_input.starts_with('C') || user_input.starts_with('F');
+    return user_input.len() == 1 && user_input.starts_with('C') || user_input.starts_with('F');
 }
 
 fn convert_user_input(temp_unit: std::string::String, val: i32) -> f32 {
