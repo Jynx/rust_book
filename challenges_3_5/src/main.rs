@@ -1,20 +1,20 @@
 use std::io;
 
 fn main() {
-    let mut temp_unit = String::new();
+    let temp_unit = query_for_temp_unit();
+    let val_to_convert = query_for_val();
 
-    query_for_temp_unit(&mut temp_unit);
-    let val_to_convert = query_user_for_val();
     let converted_val = convert_temp_val(temp_unit, val_to_convert).to_string();
     println!("converted Value is {}", converted_val);
 }
 
-fn query_for_temp_unit(unit_input_buf: &mut String) {
+fn query_for_temp_unit() -> String {
+    let mut unit_input_buf = String::new();
     loop {
         println!("Please enter the temperature unit: C or F");
 
         io::stdin()
-            .read_line(unit_input_buf)
+            .read_line(&mut unit_input_buf)
             .expect("failed to read input");
 
         let temp_unit = unit_input_buf.trim().to_uppercase();
@@ -29,24 +29,25 @@ fn query_for_temp_unit(unit_input_buf: &mut String) {
         unit_input_buf.push_str(&temp_unit);
         break;
     }
+    unit_input_buf
 }
 
-fn query_user_for_val() -> i32 {
-    let mut input_buf = String::new();
+fn query_for_val() -> i32 {
+    let mut val_input_buf = String::new();
     loop {
         println!("Please enter the value to convert");
 
         io::stdin()
-            .read_line(&mut input_buf)
+            .read_line(&mut val_input_buf)
             .expect("failed to read input");
 
-        match input_buf.trim().parse() {
+        match val_input_buf.trim().parse() {
             Ok(num) => {
                 return num;
             }
             Err(_) => {
                 println!("You did not enter a valid number");
-                input_buf.clear();
+                val_input_buf.clear();
                 continue;
             }
         };
