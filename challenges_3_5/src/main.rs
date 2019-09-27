@@ -18,13 +18,15 @@ fn query_user_for_temperature_unit(temp_unit_input_buf: &mut std::string::String
             .expect("failed to read input");
 
         let temperature_unit = temp_unit_input_buf.trim().to_uppercase();
-        let is_valid_temp_unit = is_valid_temperature_unit(temperature_unit);
+        let is_valid_temp_unit = is_valid_temperature_unit(&temperature_unit);
 
         if !is_valid_temp_unit {
             println!("you did not enter a valid temperature unit");
             temp_unit_input_buf.clear();
             continue;
         }
+        temp_unit_input_buf.clear();
+        temp_unit_input_buf.push_str(&temperature_unit);
         break;
     }
 }
@@ -51,7 +53,7 @@ fn query_user_for_value_to_convert() -> i32 {
     }
 }
 
-fn is_valid_temperature_unit(user_input: std::string::String) -> bool {
+fn is_valid_temperature_unit(user_input: &std::string::String) -> bool {
     return user_input.len() < 2 && user_input.starts_with('C') || user_input.starts_with('F');
 }
 
