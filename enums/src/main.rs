@@ -3,12 +3,11 @@
 * Move: anonymous struct
 * Write: String
 * ChangeColor: 3 i32's
-*/
-
-/* 
+*
 * The advantage of this, is we can define a function that accepts "Message", and then pass Message::Quit, Message:Move, etc.
 * as opposed to somehow accepting any of these struct's invidually. Message acts as a single type.
 */
+
 enum Message {
     Quit,
     Move { x: i32, y: i32 },
